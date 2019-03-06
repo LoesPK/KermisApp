@@ -10,17 +10,17 @@ public class Prompter {
 	//_-_-_-_-_-_-_-_-_-_-___WELKOMSTBERICHT + MENU___-_-_-_-_-_-_-_-_-_-_//
 	
 	String starten() {
-		String desc = "Wilt u een ritje maken in een attractie(A)"
-				+ " De omzet (O) zien van de kermis en alle attracties."
-				+ "De verkochte kaartjes (K) zien van de kermis en alle attracties."
-				+ "Of Fred de monteur oproepen om de attracties te controleren en een onderhoudsbeurt te geven";
+		String desc = "\n"
+				+ "Wilt u een ritje maken in een attractie(A).\n"
+				+ "De omzet (O) zien van de kermis en alle attracties.\n"
+				+ "De verkochte kaartjes (K) zien van de kermis en alle attracties.\n"
+				+ "Wat lekkers eten in een van onze eetkraampjes(E)";
 		return desc;
 	}
 	
 	
 	//_-_-_-_-_-_-_-_-_-_-___ATTRACTIEKEUZE___-_-_-_-_-_-_-_-_-_-_//
 	int attractieRijden() {
-		
 		System.out.println("Kies \n" +
 				"1. \tvoor botsauto's \t €2,50 \n" + 
 				"2. \tvoor spin \t\t €2,25 \n" + 
@@ -29,13 +29,33 @@ public class Prompter {
 				"5. \tvoor Hawaii \t\t €2,90 \n" + 
 				"6. \tvoor ladderklimmen \t €5,00 ");
 		keuze = Integer.parseInt(scanner.nextLine());
+		while(keuze <1 || keuze >6) {
+			System.out.println("Maak een geldige keuze");
+			keuze = Integer.parseInt(scanner.nextLine());
+		}
 		return keuze;
 	} 
+
+	//_-_-_-_-_-_-_-_-_-_-___EETKEUZE___-_-_-_-_-_-_-_-_-_-_//
+	int eten() {
+			System.out.println("Kies \n" +
+					"1. \tvoor hotdogkraam \t €2,00 \n" + 
+					"2. \tvoor hamburgerkraam \t €2,55 \n" + 
+					"3. \tvoor saladebar \t\t €3,00 \n" + 
+					"4. \tvoor tostikraam \t €1,50 \n" 
+					);
+			keuze = Integer.parseInt(scanner.nextLine());
+			while(keuze <1 || keuze >4) {
+				System.out.println("Maak een geldige keuze");
+				keuze = Integer.parseInt(scanner.nextLine());
+			}
+		return keuze;
+		} 
+
 	
 	//_-_-_-_-_-_-_-_-_-_-___MENUKEUZE___-_-_-_-_-_-_-_-_-_-_//
 	String keuzeMaken() {
 		keuzeStart = scanner.nextLine().toUpperCase();
-		
 		return keuzeStart;
 	}
 	

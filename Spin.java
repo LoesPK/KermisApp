@@ -1,8 +1,9 @@
 package weekOpdrachtKermis;
 
-public class Spin extends RisicoVolleAttracties implements GokAttractie{
-	private int gereserveerdBedrag =0;
+public class Spin extends RisicoVolleAttracties{
+
 	
+	////   CONSTRUCTOR   \\\\
 	Spin(String naam, int prijs) {
 		super(naam, prijs);
 	}
@@ -14,10 +15,12 @@ public class Spin extends RisicoVolleAttracties implements GokAttractie{
 
 	@Override
 	boolean opstellingskeuring() {
-		return true;
+		this.opstellingskeuring = true;
+		return opstellingskeuring;
 	}
 	
 	@Override
+	
 	public void onderhoudsbeurtNodig() {
 		if(this.getKaartjes() % 5 == 0) {
 			onderhoudsbeurtNodig = true;
@@ -26,17 +29,6 @@ public class Spin extends RisicoVolleAttracties implements GokAttractie{
 		}
 	}
 
-	@Override
-	public int kansSpelBelastingBetalen(int kassa) {
-		gereserveerdBedrag += (this.getPrijs()*0.3);
-//		System.out.println("kassa is "+ (this.getPrijs() - (this.getPrijs()*0.3))); // check of berekening klopt
-		kassa += (this.getPrijs() - (this.getPrijs()*0.3));
-		return kassa;
-	}
 
-	@Override
-	public int getGereserveerdBedrag() {
-		return gereserveerdBedrag;
-	}
 
 }
