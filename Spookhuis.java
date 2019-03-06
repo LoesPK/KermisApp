@@ -9,7 +9,7 @@ public class Spookhuis extends Attractie{
 	
 	////	HA-HA-HA...SLOWCLAP	\\\\
 	public String lachenMan() {
-		String lachen = "kijk... een spook \n eng enzo.";
+		String lachen = "kijk... een spook \neng enzo.";
 		return lachen;
 	}
 

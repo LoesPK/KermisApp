@@ -9,7 +9,7 @@ public class Spiegelpaleis extends Attractie  implements GokAttractie{
 
 	////	HA-HA-HA...SLOWCLAP	\\\\
 	public String lachenMan() {
-		String lachen = "AAAAH da's schrikken!! \n Je eigen gezicht.";
+		String lachen = "AAAAH da's schrikken!! \n\nJe eigen gezicht.";
 		return lachen;
 	}
 	

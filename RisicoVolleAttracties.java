@@ -1,6 +1,11 @@
 package weekOpdrachtKermis;
 
+import java.util.Random;
+
 abstract class RisicoVolleAttracties extends Attractie{
+	Random random = new Random();
+	int ongelukken = 0;
+	
 	protected boolean opstellingskeuring = false;
 	boolean onderhoudsbeurtNodig;
 	
@@ -9,6 +14,13 @@ abstract class RisicoVolleAttracties extends Attractie{
 		super(naam, prijs);
 	}
 	
+	////	HA-HA-HA...SLOWCLAP	\\\\
+	public String lachenMan() {
+		String lachen = "";
+		return lachen;
+	}
+	
+
 	
 	abstract boolean opstellingskeuring();
 	abstract int draaiLimiet();

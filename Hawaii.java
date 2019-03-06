@@ -9,8 +9,9 @@ public class Hawaii extends RisicoVolleAttracties{
 	
 	////	HA-HA-HA...SLOWCLAP	\\\\
 	public String lachenMan() {
+		ongelukken = random.nextInt(300);
 		String lachen = "Nee... ik weet ook niet wat dit in godsnaam voor attractie is. Misschien wel Hula-hoopen...";
-		return lachen;
+		return lachen + "\nEr zijn pas " + this.ongelukken + " ongelukken gebeurd met deze attractie.";
 	}
 	
 	@Override

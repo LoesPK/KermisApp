@@ -11,12 +11,13 @@ public class Spin extends RisicoVolleAttracties{
 	////	HA-HA-HA...SLOWCLAP	\\\\
 	public String lachenMan() {
 		String lachen;
+		ongelukken = random.nextInt(300);
 		if(Eetkraampje.getVerkochtEten()>0) {
-			lachen  = "BhaAaaARF \n Had ik nou maar niet dat eten gekocht";
+			lachen  = "BhaAaaARF \nHad ik nou maar niet dat eten gekocht";
 		}else {
-			lachen = "whoOwHoWOOhooo.... \n nu ben ik duizelig....";
+			lachen = "whoOwHoWOOhooo.... \nnu ben ik duizelig....";
 		}
-		return lachen;
+		return lachen 	 + "\nEr zijn pas " + this.ongelukken + " ongelukken gebeurd met deze attractie.";
 	}
 	
 	@Override
