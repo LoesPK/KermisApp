@@ -7,4 +7,9 @@ public class Hotdogkraam extends Eetkraampje{
 		super(naam, eten, prijs);
 	}
 
+	////	HA-HA-HA...SLOWCLAP	\\\\
+	public String lachenMan() {
+		String lachen = "Arme Fikkie.";
+		return lachen;
+	}
 }

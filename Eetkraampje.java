@@ -6,31 +6,41 @@ public class Eetkraampje {
 	private String eten;
 	private double oppervlakte;
 	private int kassa;
-	private int aantalVerkochtEten;
+	private static int aantalVerkochtEten;
 	
-	////	SUPER CONSTRUCTOR   ////
+	////	SUPER CONSTRUCTOR   \\\\
 	Eetkraampje(String naam, String eten, int prijs){
 		this.naam = naam;
 		this.prijs = prijs;
 		this.eten = eten;
 	}
-	////	ETEN VERKOPEN	////
+	////	ETEN VERKOPEN	\\\\
 	public String etenVerkopen(int i) {
 		this.kassa+=this.prijs;
 		this.aantalVerkochtEten++;
-		return "Lekkere " + this.eten + " gekocht bij " + this.naam;
+		String grapjeSorry = lachenMan();
+		return "Lekkere " + this.eten + " gekocht bij " + this.naam + "\n"
+				+ grapjeSorry;
 	}
-	////   NAAM   ////
+
+	////	HA-HA-HA...SLOWCLAP	\\\\
+	public String lachenMan() {
+		String lachen = "";
+		return lachen;
+	}
+	
+	
+	////   NAAM   \\\\
 	String getNaam() {
 		return this.naam;
 	}	
 	
-	////   ETEN   ////
+	////   ETEN   \\\\
 	String getEten() {
 		return this.eten;
 	}
 	
-	////   KASSA   ////
+	////   KASSA   \\\\
 	int getKassa() {
 		return this.kassa;
 	}
@@ -38,14 +48,14 @@ public class Eetkraampje {
 		this.kassa = k; 
 	}
 	
-	////   PRIJS   ////
+	////   PRIJS   \\\\
 	public int getPrijs() {
 		return this.prijs;
 	}
 	
-	////	ETEN   ////
-	public int getVerkochtEten() {
-		return this.aantalVerkochtEten;
+	////	ETEN   \\\\
+	public static int getVerkochtEten() {
+		return aantalVerkochtEten;
 	}
 	
 }

@@ -48,7 +48,7 @@ public class Kermis {
 		for(Attractie a: attracties) {
 			if( a instanceof RisicoVolleAttracties) {
 				RisicoVolleAttracties b = (RisicoVolleAttracties)a;
-				System.out.println(a.getNaam() + " moet eerst een keuring hebben, de monteur gaat aan de slag.");
+				System.out.println(a.getNaam() + " moet eerst een keuring hebben, de monteur Fred gaat aan de slag.");
 			}
 
 		}

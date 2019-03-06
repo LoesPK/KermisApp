@@ -8,6 +8,17 @@ public class Spin extends RisicoVolleAttracties{
 		super(naam, prijs);
 	}
 	
+	////	HA-HA-HA...SLOWCLAP	\\\\
+	public String lachenMan() {
+		String lachen;
+		if(Eetkraampje.getVerkochtEten()>0) {
+			lachen  = "BhaAaaARF \n Had ik nou maar niet dat eten gekocht";
+		}else {
+			lachen = "whoOwHoWOOhooo.... \n nu ben ik duizelig....";
+		}
+		return lachen;
+	}
+	
 	@Override
 	public int draaiLimiet() {
 		return 5;

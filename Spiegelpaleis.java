@@ -7,6 +7,12 @@ public class Spiegelpaleis extends Attractie  implements GokAttractie{
 		super(naam, prijs);
 	}
 
+	////	HA-HA-HA...SLOWCLAP	\\\\
+	public String lachenMan() {
+		String lachen = "AAAAH da's schrikken!! \n Je eigen gezicht.";
+		return lachen;
+	}
+	
 	@Override
 	public int kansSpelBelastingBetalen(int kassa) {
 		gereserveerdBedrag += (this.getPrijs()*0.3);

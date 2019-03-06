@@ -45,6 +45,13 @@ public class Attractie {
 	}
 	
 	
+	////	HA-HA-HA...SLOWCLAP	\\\\
+	public String lachenMan() {
+		String lachen = "";
+		return lachen;
+	}
+	
+	
 	//_-_-_-_-_-_-_-_-_-_-___ATTRACTIE LATEN DRAAIEN___-_-_-_-_-_-_-_-_-_-_\\
 	String draaien(int i) throws onderhoudNodigException{
 
@@ -68,7 +75,8 @@ public class Attractie {
 			while(r.onderhoudsbeurtNodig == true) { 					//--------> als attractie risicovol is en onderhoudsbeurt nodig heeft, mag hij niet rijden en moet hij gecontroleerd worden//
 				throw new onderhoudNodigException();//throwt exception
 			}
-			return this.naam + " draait";
+			return this.naam + " draait.\n" +
+					this.lachenMan();
 		}//end if risicovol
 		
 		//----->___ATTRACTIE GOKATTRACTIE___<------\\
@@ -82,15 +90,15 @@ public class Attractie {
 				System.err.println("De attractie moet een kansspelbelasting betalen van 15%");//
 				Kermis.setKassa(Belastingadviseur.belastingInnen(Kermis.getKassa(), g.getGereserveerdBedrag()));
 			}
-			return this.naam + " draait";
-		}
+			return this.naam + " draait.\n" +
+			this.lachenMan();		}
 		
 		//----->___ATTRACTIE NORMAAL___<------\\
 		else {															
 			this.kassa+=this.prijs;
 			this.aantalKaartjes++;
-			return this.naam + " draait";
-		}
+			return this.naam + " draait.\n" +
+			this.lachenMan();		}
 			
 	}
 	

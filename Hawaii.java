@@ -7,6 +7,12 @@ public class Hawaii extends RisicoVolleAttracties{
 		super(naam, prijs);
 	}
 	
+	////	HA-HA-HA...SLOWCLAP	\\\\
+	public String lachenMan() {
+		String lachen = "Nee... ik weet ook niet wat dit in godsnaam voor attractie is. Misschien wel Hula-hoopen...";
+		return lachen;
+	}
+	
 	@Override
 	public int draaiLimiet() {
 		return 10;
