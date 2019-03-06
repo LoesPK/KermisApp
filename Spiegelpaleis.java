@@ -2,7 +2,7 @@ package weekOpdrachtKermis;
 
 public class Spiegelpaleis extends Attractie{
 
-	Spiegelpaleis(String naam, double prijs) {
+	Spiegelpaleis(String naam, int prijs) {
 		super(naam, prijs);
 	}
 

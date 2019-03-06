@@ -6,9 +6,9 @@ import java.util.ArrayList;
 public class Attractie {
 	Prompter prompter = new Prompter();
 	private String naam;
-	private double prijs;
+	private int prijs;
 	private double oppervlakte;
-	private double kassa;
+	private int kassa;
 	private int aantalKaartjes;
 	private boolean attractieDisabled;
 	
@@ -16,7 +16,7 @@ public class Attractie {
 	
 	
 	////   SUPER CONSTRUCTOR   ////
-	Attractie(String naam, double prijs){
+	Attractie(String naam, int prijs){
 		this.naam = naam;
 		this.prijs = prijs;
 	}
@@ -26,15 +26,15 @@ public class Attractie {
 		return this.naam;
 	}
 	////   KASSA   ////
-	double getKassa() {
+	int getKassa() {
 		return this.kassa;
 	}
-	void setKassa(double k) {
+	void setKassa(int k) {
 		this.kassa = k; 
 	}
 	
 	////   PRIJS   ////
-	public double getPrijs() {
+	public int getPrijs() {
 		return this.prijs;
 	}
 	public int getKaartjes() {
@@ -49,7 +49,8 @@ public class Attractie {
 			System.out.println("Deze attractie mag niet meer rijden.");	
 		}
 
-
+		
+		
 		if(this instanceof RisicoVolleAttracties) {						//--------> controleert of attractie risicovol is//
 			RisicoVolleAttracties r = (RisicoVolleAttracties)this;
 			
@@ -59,24 +60,24 @@ public class Attractie {
 				r.onderhoudsbeurtNodig();
 				break;
 			}
-			while(r.onderhoudsbeurtNodig == true) { //--------> als attractie risicovol is en onderhoudsbeurt nodig heeft, mag hij niet rijden en gecontroleerd worden//
+			while(r.onderhoudsbeurtNodig == true) { 					//--------> als attractie risicovol is en onderhoudsbeurt nodig heeft, mag hij niet rijden en gecontroleerd worden//
 //				b.onderhoudsbeurtNodig();
 				throw new onderhoudNodigException();//throwt exception
 			}
 			return this.naam + " draait";
 		}//end if risicovol
-		else if(this instanceof GokAttractie) {
+		else if(this instanceof GokAttractie) {							//--------> controleert of attractie een gokattractie is//
 			GokAttractie g = (GokAttractie)this;
 			this.kassa = g.kansSpelBelastingBetalen(this.kassa);
 			this.aantalKaartjes++;
-			if(this.aantalKaartjes%15 ==0) {
+			if(this.aantalKaartjes%13 ==0) { 							//--------> voor elke 13 kaartjes verkocht, wordt de belasting geïnd//
 				System.out.println("De attractie moet een kansspelbelasting betalen van 15%");//
 				Kermis.setKassa(Belastingadviseur.belastingInnen(Kermis.getKassa(), g.getGereserveerdBedrag()));
 				System.out.println("De kassa heeft nu " + this.getKassa()); // check of kassa gokattracties werkt
 			}
 			return this.naam + " draait";
 		}
-		else {
+		else {															// ------> voor alle normale attracties//
 			this.kassa+=this.prijs;
 			this.aantalKaartjes++;
 			return this.naam + " draait";

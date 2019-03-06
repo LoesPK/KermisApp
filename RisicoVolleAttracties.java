@@ -4,7 +4,7 @@ abstract class RisicoVolleAttracties extends Attractie{
 	private int draaiLimiet;
 	boolean onderhoudsbeurtNodig;
 	
-	RisicoVolleAttracties(String naam, double prijs) {
+	RisicoVolleAttracties(String naam, int prijs) {
 		super(naam, prijs);
 	}
 	abstract boolean opstellingskeuring();

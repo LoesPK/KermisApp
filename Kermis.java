@@ -4,28 +4,27 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Kermis {
-	private static double kassa;
+	private static int kassa;
 	private int aantalKaartjes;
 	private static Prompter prompter = new Prompter();
 	ArrayList<Attractie> attracties; 
 	
 	void attractieList() {
 		attracties  = new ArrayList<Attractie>();
-		attracties.add(new Botsauto("Botsauto's", 2.50));
-		attracties.add(new Spin("De Spin", 2.25));
-		attracties.add(new Spiegelpaleis("Spiegelpaleis", 2.75));
-		attracties.add(new Spookhuis("Spookhuis", 3.20));
-		attracties.add(new Hawaii("Hawaii", 2.90));
-		attracties.add(new Ladderklimmen("Ladderklimmen", 5.00));
+		attracties.add(new Botsauto("Botsauto's", 250));
+		attracties.add(new Spin("De Spin", 225));
+		attracties.add(new Spiegelpaleis("Spiegelpaleis", 275));
+		attracties.add(new Spookhuis("Spookhuis", 320));
+		attracties.add(new Hawaii("Hawaii", 290));
+		attracties.add(new Ladderklimmen("Ladderklimmen", 500));
 
 	}
 	
-	
-	public static double getKassa() {
+	public static int getKassa() {
 		return kassa;
 	}
 	
-	public static void setKassa(double k) {
+	public static void setKassa(int k) {
 		kassa = k;
 	}
 	
@@ -77,10 +76,10 @@ public class Kermis {
 	}
 
 	public void omzetTonen() {
-		System.out.println("De kermis heeft in totaal: €" + this.kassa + " verdiend." );
+		System.out.println("De kermis heeft in totaal: €" + String.format("%.2f",(double)kassa*0.01) + " verdiend." );
 		for(Attractie a : attracties) {
 			if(a.getKassa()> 0.0) {
-				System.out.println(a.getNaam() + " heeft €" + a.getKassa() + " verdiend.");
+				System.out.println(a.getNaam() + " heeft €" + String.format("%.2f",(double)a.getKassa()*0.01) + " verdiend.");
 			}
 		}
 	}

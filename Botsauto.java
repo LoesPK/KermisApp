@@ -2,7 +2,7 @@ package weekOpdrachtKermis;
 
 public class Botsauto extends Attractie{
 
-	Botsauto(String naam, double prijs) {
+	Botsauto(String naam, int prijs) {
 		super(naam, prijs);
 	}
 	

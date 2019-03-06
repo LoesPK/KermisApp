@@ -2,6 +2,6 @@ package weekOpdrachtKermis;
 
 public interface GokAttractie {
 	
-	double kansSpelBelastingBetalen(double kassa);
-	double getGereserveerdBedrag();
+	int kansSpelBelastingBetalen(int kassa);
+	int getGereserveerdBedrag();
 }

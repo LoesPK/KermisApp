@@ -2,7 +2,7 @@ package weekOpdrachtKermis;
 
 public class Hawaii extends RisicoVolleAttracties{
 	
-	Hawaii(String naam, double prijs) {
+	Hawaii(String naam, int prijs) {
 		super(naam, prijs);
 	}
 	
