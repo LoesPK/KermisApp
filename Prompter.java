@@ -3,18 +3,22 @@ package weekOpdrachtKermis;
 import java.util.Scanner;
 
 public class Prompter {
-	Scanner scanner = new Scanner(System.in);
+	private static Scanner scanner = new Scanner(System.in);
 	int keuze;
 	String keuzeStart;
-	//------------welkomstbericht + menu------------//
+	
+	//_-_-_-_-_-_-_-_-_-_-___WELKOMSTBERICHT + MENU___-_-_-_-_-_-_-_-_-_-_//
 	
 	String starten() {
 		String desc = "Wilt u een ritje maken in een attractie(A)"
 				+ " De omzet (O) zien van de kermis en alle attracties."
-				+ "Of de verkochte kaartjes (K) zien van de kermis en alle attracties.";
+				+ "De verkochte kaartjes (K) zien van de kermis en alle attracties."
+				+ "Of Fred de monteur oproepen om de attracties te controleren en een onderhoudsbeurt te geven";
 		return desc;
 	}
 	
+	
+	//_-_-_-_-_-_-_-_-_-_-___ATTRACTIEKEUZE___-_-_-_-_-_-_-_-_-_-_//
 	int attractieRijden() {
 		
 		System.out.println("Kies \n" +
@@ -28,13 +32,16 @@ public class Prompter {
 		return keuze;
 	} 
 	
+	//_-_-_-_-_-_-_-_-_-_-___MENUKEUZE___-_-_-_-_-_-_-_-_-_-_//
 	String keuzeMaken() {
 		keuzeStart = scanner.nextLine().toUpperCase();
 		
 		return keuzeStart;
 	}
 	
-	String monteurAanroepen() {
+	
+	//_-_-_-_-_-_-_-_-_-_-___MONTEUR___-_-_-_-_-_-_-_-_-_-_//
+	static String monteurAanroepen() {
 		System.out.println("Wilt u de attractie laten controleren door Fred de monteur? Druk op m, anders druk op elke andere knop");
 		String maken = scanner.nextLine().toUpperCase();
 		if(maken.equals("M")) {

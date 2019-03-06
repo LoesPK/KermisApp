@@ -1,5 +1,6 @@
 package weekOpdrachtKermis;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Attractie {
@@ -12,53 +13,69 @@ public class Attractie {
 	private boolean attractieDisabled;
 	
 	
+	
+	
+	////   SUPER CONSTRUCTOR   ////
 	Attractie(String naam, double prijs){
 		this.naam = naam;
 		this.prijs = prijs;
 	}
 	
+	////   NAAM   ////
 	String getNaam() {
 		return this.naam;
 	}
-	
+	////   KASSA   ////
 	double getKassa() {
 		return this.kassa;
 	}
+	void setKassa(double k) {
+		this.kassa = k; 
+	}
 	
+	////   PRIJS   ////
 	public double getPrijs() {
 		return this.prijs;
 	}
-	
 	public int getKaartjes() {
 		return this.aantalKaartjes;
 	}
 	
 	
-	String draaien(int i) throws Exception{
+	String draaien(int i) throws onderhoudNodigException{
 		
 		
-		if(attractieDisabled) {
-			return "Deze sttractie mag niet meer rijden";
+		if(attractieDisabled) {											// ------> controleert of attractie disabled is. zou eigenlijk nog mogelijkheid moeten zijn hem alsnog te repareren//
+			System.out.println("Deze attractie mag niet meer rijden.");	
 		}
 
 
-		if(this instanceof RisicoVolleAttracties) {
-			RisicoVolleAttracties b = (RisicoVolleAttracties)this;
-			while(b.onderhoudsbeurtNodig == false) {
+		if(this instanceof RisicoVolleAttracties) {						//--------> controleert of attractie risicovol is//
+			RisicoVolleAttracties r = (RisicoVolleAttracties)this;
+			
+			while(r.onderhoudsbeurtNodig == false) {					//--------> als attractie risicovol is, maar geen onderhoudsbeurt nodig heeft mag hij rijden//
 				this.kassa+=this.prijs;
 				this.aantalKaartjes++;
-				System.out.println(this.aantalKaartjes);
-				System.out.println(b.onderhoudsbeurtNodig);
+				r.onderhoudsbeurtNodig();
 				break;
 			}
-			while(b.getKaartjes() % 5 == 0 && b.onderhoudsbeurtNodig == false) { 
-				b.onderhoudsbeurtNodig();
-				System.out.println(b.onderhoudsbeurtNodig);
-				throw new Exception(b.getNaam() + " mag niet meer draaien en moet eerst gecontroleerd worden.");
+			while(r.onderhoudsbeurtNodig == true) { //--------> als attractie risicovol is en onderhoudsbeurt nodig heeft, mag hij niet rijden en gecontroleerd worden//
+//				b.onderhoudsbeurtNodig();
+				throw new onderhoudNodigException();//throwt exception
 			}
 			return this.naam + " draait";
 		}//end if risicovol
-		
+		else if(this instanceof GokAttractie) {
+			GokAttractie g = (GokAttractie)this;
+			this.kassa = g.kansSpelBelastingBetalen(this.kassa);
+			this.aantalKaartjes++;
+			if(this.aantalKaartjes%15 ==0) {
+				System.out.println("De attractie moet een kansspelbelasting betalen van 15%");//
+				Kermis.setKassa(Belastingadviseur.belastingInnen(Kermis.getKassa(), g.getGereserveerdBedrag()));
+				System.out.println("De kassa heeft nu " + this.getKassa()); // check of kassa gokattracties werkt
+			}
+			return this.naam + " draait";
+		}
 		else {
 			this.kassa+=this.prijs;
 			this.aantalKaartjes++;

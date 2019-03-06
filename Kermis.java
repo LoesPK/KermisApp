@@ -1,11 +1,12 @@
 package weekOpdrachtKermis;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Kermis {
-	private double kassa;
+	private static double kassa;
 	private int aantalKaartjes;
-	Prompter prompter = new Prompter();
+	private static Prompter prompter = new Prompter();
 	ArrayList<Attractie> attracties; 
 	
 	void attractieList() {
@@ -19,6 +20,14 @@ public class Kermis {
 
 	}
 	
+	
+	public static double getKassa() {
+		return kassa;
+	}
+	
+	public static void setKassa(double k) {
+		kassa = k;
+	}
 	
 	public void kermisTonen() {
 		
@@ -47,6 +56,7 @@ public class Kermis {
 				break;
 				case "K": kaartenTonen();
 				break;
+				case "B": 
 				default: System.out.println("maak een keuze");
 				break;
 			}
@@ -57,8 +67,8 @@ public class Kermis {
 		try {
 			System.out.println(attracties.get(prompter.keuze-1).draaien(prompter.keuze));
 			
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
+		} catch (onderhoudNodigException e) {
+			System.err.println(attracties.get(prompter.keuze-1).getNaam() + e.getMessage());
 			onderhoud((RisicoVolleAttracties)attracties.get(prompter.keuze-1));
 		}finally {
 			this.kassa += attracties.get(prompter.keuze-1).getPrijs();
@@ -84,12 +94,12 @@ public class Kermis {
 		}
 	}
 	
-	void onderhoud(RisicoVolleAttracties rva) {
+	static void onderhoud(RisicoVolleAttracties rva) {
 		if(rva.onderhoudsbeurtNodig == true) {
-			String reparatie = prompter.monteurAanroepen();
+			String reparatie = Prompter.monteurAanroepen();
 			if(reparatie.equals("M")){
 				rva.onderhoudsbeurtNodig = false;
-				System.out.println(rva + " is gecontroleerd en veilig!");
+				System.out.println(rva.getNaam() + " is gecontroleerd en veilig!");
 			}else {
 				rva.attractieDisabled(rva);
 			}

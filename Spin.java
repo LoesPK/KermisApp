@@ -18,7 +18,11 @@ public class Spin extends RisicoVolleAttracties{
 	
 	@Override
 	public void onderhoudsbeurtNodig() {
-		onderhoudsbeurtNodig = true;
+		if(this.getKaartjes() % 5 == 0) {
+			onderhoudsbeurtNodig = true;
+		}else {
+			onderhoudsbeurtNodig = false;
+		}
 	}
 
 }

@@ -18,6 +18,10 @@ public class Hawaii extends RisicoVolleAttracties{
 	
 	@Override
 	public void onderhoudsbeurtNodig() {
-		onderhoudsbeurtNodig = false;
+		if(this.getKaartjes()%10 == 0) {
+			onderhoudsbeurtNodig = true;
+		}else {
+			onderhoudsbeurtNodig = false;
+		}
 	}
 }
