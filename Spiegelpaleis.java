@@ -1,4 +1,4 @@
-package weekOpdrachtKermis;
+package KermisApp;
 
 public class Spiegelpaleis extends Attractie  implements GokAttractie{
 	private int gereserveerdBedrag =0;

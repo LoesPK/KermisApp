@@ -1,4 +1,4 @@
-package weekOpdrachtKermis;
+package KermisApp;
 
 public class Eetkraampje {
 	private String naam;
@@ -6,7 +6,7 @@ public class Eetkraampje {
 	private String eten;
 	private double oppervlakte;
 	private int kassa;
-	private static int aantalVerkochtEten;
+	private int aantalVerkochtEten;
 	
 	////	SUPER CONSTRUCTOR   \\\\
 	Eetkraampje(String naam, String eten, int prijs){
@@ -54,8 +54,8 @@ public class Eetkraampje {
 	}
 	
 	////	ETEN   \\\\
-	public static int getVerkochtEten() {
-		return aantalVerkochtEten;
+	public int getVerkochtEten() {
+		return this.aantalVerkochtEten;
 	}
 	
 }

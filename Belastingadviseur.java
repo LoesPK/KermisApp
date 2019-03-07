@@ -1,4 +1,4 @@
-package weekOpdrachtKermis;
+package KermisApp;
 
 public class Belastingadviseur {
 	//_-_-_-_-_-_-_-_-_-_-___BELASTING INNEN___-_-_-_-_-_-_-_-_-_-_\\

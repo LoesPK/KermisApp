@@ -1,10 +1,10 @@
-package weekOpdrachtKermis;
+package KermisApp;
 import java.util.ArrayList;
 
 public class Kermis {
 	private static int kassa;
 	private int aantalKaartjes;
-	private int aantalVerkochtEten;
+	private static int aantalVerkochtEten;
 	private static Prompter prompter = new Prompter();
 	ArrayList<Attractie> attracties; 
 	ArrayList<Eetkraampje> eetkramen;
@@ -85,22 +85,27 @@ public class Kermis {
 	//_-_-_-_-_-_-_-_-_-_-___ATTRACTIE RIJDEN___-_-_-_-_-_-_-_-_-_-_\\
 	public void rijden() {
 		try {
-			System.out.println(attracties.get(prompter.keuze-1).draaien(prompter.keuze));
+			System.out.println(attracties.get(prompter.keuze-1).draaien());
 			
 		} catch (onderhoudNodigException e) {
 			System.err.println(attracties.get(prompter.keuze-1).getNaam() + e.getMessage());
+			Kermis.kassa =- attracties.get(prompter.keuze-1).getPrijs();
+			this.aantalKaartjes--;
 			onderhoud((RisicoVolleAttracties)attracties.get(prompter.keuze-1));
 		}finally {
-			this.kassa += attracties.get(prompter.keuze-1).getPrijs();
-			this.aantalKaartjes++;
+			System.out.println("finally");
+//			System.out.println(attracties.get(prompter.keuze-1).getNaam() + " draait.\n" +
+//					attracties.get(prompter.keuze-1).lachenMan());
+////			Kermis.kassa += attracties.get(prompter.keuze-1).getPrijs();
+//			this.aantalKaartjes++;
 		}
 	}
 	
 	//_-_-_-_-_-_-_-_-_-_-___ETEN___-_-_-_-_-_-_-_-_-_-_\\
 	public void eten() {
 			System.out.println(eetkramen.get(prompter.keuze-1).etenVerkopen(prompter.keuze));
-			this.kassa += eetkramen.get(prompter.keuze-1).getPrijs();
-			this.aantalVerkochtEten++;
+			Kermis.kassa += eetkramen.get(prompter.keuze-1).getPrijs();
+			Kermis.aantalVerkochtEten++;
 	}
 	
 
@@ -135,13 +140,17 @@ public class Kermis {
 	
 	//_-_-_-_-_-_-_-_-_-_-___ETEN___-_-_-_-_-_-_-_-_-_-_\\
 	public void etenTonen() {
-		System.out.println("De kermis heeft in totaal: " + this.aantalVerkochtEten + " etenswaar verkocht." );
+		System.out.println("De kermis heeft in totaal: " + Kermis.aantalVerkochtEten + " etenswaar verkocht." );
 		for(Eetkraampje e : eetkramen) {
 			if(e.getVerkochtEten()> 0) { // Alleen tonen als er eten verkocht is... anders wordt overzicht onduidelijk
 				System.out.println(e.getNaam() + " heeft " + e.getVerkochtEten() + " " + e.getEten() + " verkocht.");
 			}
 		}
 	}
+	
+ public static int getEten() {
+	 return Kermis.aantalVerkochtEten;
+ }
 	
 	//_-_-_-_-_-_-_-_-_-_-___ONDERHOUD___-_-_-_-_-_-_-_-_-_-_\\
 	static void onderhoud(RisicoVolleAttracties rva) {

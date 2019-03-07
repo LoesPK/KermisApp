@@ -1,4 +1,4 @@
-package weekOpdrachtKermis;
+package KermisApp;
 
 public class Ladderklimmen extends Attractie implements GokAttractie{
 	private int gereserveerdBedrag =0;

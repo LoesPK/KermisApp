@@ -1,4 +1,4 @@
-package weekOpdrachtKermis;
+package KermisApp;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -53,56 +53,62 @@ public class Attractie {
 	
 	
 	//_-_-_-_-_-_-_-_-_-_-___ATTRACTIE LATEN DRAAIEN___-_-_-_-_-_-_-_-_-_-_\\
-	String draaien(int i) throws onderhoudNodigException{
+	String draaien() throws onderhoudNodigException{
 
 		//----->___CONTROLE VOOR DISABLED ATTRACTIE (ALS NIET GEREPAREERD IS___<------\\
-		if(attractieDisabled) {											// ------> zou eigenlijk nog mogelijkheid moeten zijn hem alsnog te repareren//
-			System.err.println("Deze attractie mag niet meer rijden.");	
+		while(attractieDisabled) {											// ------> zou eigenlijk nog mogelijkheid moeten zijn hem alsnog te repareren//
+			return "Deze attractie mag niet meer rijden.";
 		}
-
+		
+		
 		
 		//----->___ATTRACTIE RISICOVOL___<------\\
-		if(this instanceof RisicoVolleAttracties) {						//--------> controleert of attractie risicovol is//
-			RisicoVolleAttracties r = (RisicoVolleAttracties)this;
-			//___geen onderhoudsbeurt nodig___\\
-			while(r.onderhoudsbeurtNodig == false) {					//--------> als attractie risicovol is, maar geen onderhoudsbeurt nodig heeft mag hij rijden//
-				this.kassa+=this.prijs;
-				this.aantalKaartjes++;
+		if(this instanceof RisicoVolleAttracties || this instanceof GokAttractie) {						//--------> controleert of attractie risicovol is//
+			System.out.println("kom je hier? 1");
+			if(this instanceof RisicoVolleAttracties) {
+				RisicoVolleAttracties r = (RisicoVolleAttracties)this;
+				
 				r.onderhoudsbeurtNodig();
-				break;
+				if(!r.onderhoudsbeurtNodig) {					//--------> als attractie risicovol is, maar geen onderhoudsbeurt nodig heeft mag hij rijden//
+					System.out.println("geen onderhoud nodig");
+				}
+				
+				//___wel onderhoudsbeurt nodig___\\
+				else { 					//--------> als attractie risicovol is en onderhoudsbeurt nodig heeft, mag hij niet rijden en moet hij gecontroleerd worden//
+					this.aantalKaartjes++;
+					this.kassa+=this.prijs;
+					throw new onderhoudNodigException();//throwt exception
+				}
+				
 			}
-			//___wel onderhoudsbeurt nodig___\\
-			while(r.onderhoudsbeurtNodig == true) { 					//--------> als attractie risicovol is en onderhoudsbeurt nodig heeft, mag hij niet rijden en moet hij gecontroleerd worden//
-				throw new onderhoudNodigException();//throwt exception
-			}
-			return this.naam + " draait.\n" +
-					this.lachenMan();
-		}//end if risicovol
-		
-		//----->___ATTRACTIE GOKATTRACTIE___<------\\
-		else if(this instanceof GokAttractie) {							
-			GokAttractie g = (GokAttractie)this;
-			this.kassa = g.kansSpelBelastingBetalen(this.kassa);
-			this.aantalKaartjes++;
 			
-			//___belasting innen___\\
-			if(this.aantalKaartjes%2 ==0) { 							//--------> voor elke 13 kaartjes verkocht, wordt de belasting geïnd//
-				System.err.println("De attractie moet een kansspelbelasting betalen van 15%");//
-				Kermis.setKassa(Belastingadviseur.belastingInnen(Kermis.getKassa(), g.getGereserveerdBedrag()));
+			System.out.println("kom je hier? 2");
+			
+			if(this instanceof GokAttractie) {
+				System.out.println("kom je hier gok?");
+				GokAttractie g = (GokAttractie)this;
+				this.kassa = g.kansSpelBelastingBetalen(this.kassa);
+				if(this.aantalKaartjes%2 ==0 && this.aantalKaartjes!=0) { 							//--------> voor elke 13 kaartjes verkocht, wordt de belasting geïnd//
+					System.err.println("De attractie moet een kansspelbelasting betalen van 15%");//
+					Kermis.setKassa(Belastingadviseur.belastingInnen(Kermis.getKassa(), g.getGereserveerdBedrag()));
+				}
 			}
-			return this.naam + " draait.\n" +
-			this.lachenMan();		}
-		
-		//----->___ATTRACTIE NORMAAL___<------\\
-		else {															
+			
+			
+			
+		}else {
+			this.aantalKaartjes++;
 			this.kassa+=this.prijs;
-			this.aantalKaartjes++;
-			return this.naam + " draait.\n" +
-			this.lachenMan();		}
-			
+			System.out.println(this.aantalKaartjes + " " + this.kassa);
+		}
+//		this.aantalKaartjes++;
+		return "Whieeeeee";
+//		return this.naam + " draait.\n" +
+//		this.lachenMan();
+		
 	}
 	
-	
-	
-	
+			
 }
+	
+
