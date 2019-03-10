@@ -59,56 +59,50 @@ public class Attractie {
 		while(attractieDisabled) {											// ------> zou eigenlijk nog mogelijkheid moeten zijn hem alsnog te repareren//
 			return "Deze attractie mag niet meer rijden.";
 		}
-		
-		
-		
-		//----->___ATTRACTIE RISICOVOL___<------\\
-		if(this instanceof RisicoVolleAttracties || this instanceof GokAttractie) {						//--------> controleert of attractie risicovol is//
-			System.out.println("kom je hier? 1");
+		//----->___ATTRACTIE RISICOVOL EN/OF GOKATTRACTIE___<------\\
+		while(this instanceof RisicoVolleAttracties || this instanceof GokAttractie) {						//--------> controleert of attractie risicovol is//
+
+			//----->___ATTRACTIE RISICOVOL___<------\\
 			if(this instanceof RisicoVolleAttracties) {
 				RisicoVolleAttracties r = (RisicoVolleAttracties)this;
 				
+				//___geen onderhoudsbeurt nodig___\\
 				r.onderhoudsbeurtNodig();
 				if(!r.onderhoudsbeurtNodig) {					//--------> als attractie risicovol is, maar geen onderhoudsbeurt nodig heeft mag hij rijden//
-					System.out.println("geen onderhoud nodig");
 				}
-				
+				else if(!r.opstellingskeuring) {
+					System.out.println(r.opstellingskeuring);
+				}
 				//___wel onderhoudsbeurt nodig___\\
 				else { 					//--------> als attractie risicovol is en onderhoudsbeurt nodig heeft, mag hij niet rijden en moet hij gecontroleerd worden//
-					this.aantalKaartjes++;
-					this.kassa+=this.prijs;
 					throw new onderhoudNodigException();//throwt exception
 				}
-				
 			}
 			
-			System.out.println("kom je hier? 2");
-			
+			//----->___ATTRACTIE GOKATTRACTIEL___<------\\
 			if(this instanceof GokAttractie) {
-				System.out.println("kom je hier gok?");
+			
 				GokAttractie g = (GokAttractie)this;
 				this.kassa = g.kansSpelBelastingBetalen(this.kassa);
-				if(this.aantalKaartjes%2 ==0 && this.aantalKaartjes!=0) { 							//--------> voor elke 13 kaartjes verkocht, wordt de belasting geïnd//
+				if(this.aantalKaartjes%15 ==0 && this.aantalKaartjes!=0) { 							//--------> voor elke 13 kaartjes verkocht, wordt de belasting geïnd//
 					System.err.println("De attractie moet een kansspelbelasting betalen van 15%");//
-					Kermis.setKassa(Belastingadviseur.belastingInnen(Kermis.getKassa(), g.getGereserveerdBedrag()));
+					Kermis.setKassa(Belastingadviseur.belastingInnen( Kermis.getKassa(), g.getGereserveerdBedrag()));
+					g.setGereserveerdBedrag(0);
 				}
 			}
+			this.aantalKaartjes++;
+			return this.naam + " draait.\n" +
+			this.lachenMan();
 			
-			
-			
-		}else {
+		}
+		while(!(this instanceof RisicoVolleAttracties) || !(this instanceof GokAttractie)) {
 			this.aantalKaartjes++;
 			this.kassa+=this.prijs;
-			System.out.println(this.aantalKaartjes + " " + this.kassa);
+			return this.naam + " draait.\n" +
+			this.lachenMan();
 		}
-//		this.aantalKaartjes++;
-		return "Whieeeeee";
-//		return this.naam + " draait.\n" +
-//		this.lachenMan();
-		
-	}
-	
-			
+		return "Whieeeeee!!";
+	}	
 }
 	
 

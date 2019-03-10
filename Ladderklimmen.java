@@ -22,9 +22,12 @@ public class Ladderklimmen extends Attractie implements GokAttractie{
 		return kassa;
 	}
 	
-	////	GETTER BELASTING GERESERVEERD		\\\\
+	////	GETTER & SETTER BELASTING GERESERVEERD		\\\\
 	public int getGereserveerdBedrag() {
 		return gereserveerdBedrag;
+	}
+	public void setGereserveerdBedrag(int g) {
+		gereserveerdBedrag = g;
 	}
 	
 }

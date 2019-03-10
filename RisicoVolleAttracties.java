@@ -5,9 +5,10 @@ import java.util.Random;
 abstract class RisicoVolleAttracties extends Attractie{
 	Random random = new Random();
 	int ongelukken = 0;
+	protected boolean keuringGehad = false;
 	
 	protected boolean opstellingskeuring = false;
-	boolean onderhoudsbeurtNodig;
+	boolean onderhoudsbeurtNodig = false;
 	
 	////   SUPER CONSTRUCTOR   \\\\
 	RisicoVolleAttracties(String naam, int prijs) {

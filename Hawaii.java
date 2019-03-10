@@ -1,6 +1,7 @@
 package KermisApp;
 
 public class Hawaii extends RisicoVolleAttracties{
+
 	
 	////	CONSTRUCTOR		\\\\
 	Hawaii(String naam, int prijs) {
@@ -21,13 +22,29 @@ public class Hawaii extends RisicoVolleAttracties{
 
 	@Override
 	boolean opstellingskeuring() {
-		return true;
+		
+		this.opstellingskeuring = true;
+		return opstellingskeuring;
 	}
 	
 	@Override
+	
 	public void onderhoudsbeurtNodig() {
-		if(this.getKaartjes()%10 == 0) {
+		
+		if(this.getKaartjes() % 10 == 0 && opstellingskeuring ==true) {
 			onderhoudsbeurtNodig = true;
+		}else if(this.opstellingskeuring == false) {
+			while(this.opstellingskeuring ==false) {
+				String keus = Prompter.opstellingsKeuring();
+				if(keus.equals("K")) {
+					opstellingskeuring();
+				}if(!keus.equals("K")) {
+					System.out.println("Doe toch maar wel...");
+					continue;
+				}
+				return;
+			}
+			
 		}else {
 			onderhoudsbeurtNodig = false;
 		}

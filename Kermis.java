@@ -44,19 +44,7 @@ public class Kermis {
 
 		attractieList();
 		eetkraamList();
-		//----->___ONDERHOUSRIJKE ATTRACTIES CONTROLEREN___<------\\
-		for(Attractie a: attracties) {
-			if( a instanceof RisicoVolleAttracties) {
-				RisicoVolleAttracties b = (RisicoVolleAttracties)a;
-				System.out.println(a.getNaam() + " moet eerst een keuring hebben, de monteur Fred gaat aan de slag.");
-			}
-
-		}
-		for(int i = 0; i<6; i++) {
-			System.out.println("...");
-		}
-		System.out.println("Zo, de attracties zijn gecontroleerd");
-		
+			
 		//----->___SWITCH OM KEUZE TE MAKEN___<------\\
 		while(true) {
 			System.out.println(prompter.starten());
@@ -86,18 +74,13 @@ public class Kermis {
 	public void rijden() {
 		try {
 			System.out.println(attracties.get(prompter.keuze-1).draaien());
-			
+			Kermis.kassa += attracties.get(prompter.keuze-1).getPrijs();
+			this.aantalKaartjes++;
 		} catch (onderhoudNodigException e) {
 			System.err.println(attracties.get(prompter.keuze-1).getNaam() + e.getMessage());
-			Kermis.kassa =- attracties.get(prompter.keuze-1).getPrijs();
-			this.aantalKaartjes--;
 			onderhoud((RisicoVolleAttracties)attracties.get(prompter.keuze-1));
 		}finally {
-			System.out.println("finally");
-//			System.out.println(attracties.get(prompter.keuze-1).getNaam() + " draait.\n" +
-//					attracties.get(prompter.keuze-1).lachenMan());
-////			Kermis.kassa += attracties.get(prompter.keuze-1).getPrijs();
-//			this.aantalKaartjes++;
+			
 		}
 	}
 	
@@ -153,12 +136,13 @@ public class Kermis {
  }
 	
 	//_-_-_-_-_-_-_-_-_-_-___ONDERHOUD___-_-_-_-_-_-_-_-_-_-_\\
-	static void onderhoud(RisicoVolleAttracties rva) {
+	void onderhoud(RisicoVolleAttracties rva) {
 		if(rva.onderhoudsbeurtNodig == true) {
 			String reparatie = Prompter.monteurAanroepen();
 			if(reparatie.equals("M")){
-				rva.onderhoudsbeurtNodig = false;
 				System.out.println(rva.getNaam() + " is gecontroleerd en veilig!");
+				rva.keuringGehad = true;
+				rijden();
 			}else {
 				rva.attractieDisabled(rva);
 			}

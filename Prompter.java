@@ -72,4 +72,10 @@ public class Prompter {
 		return maken;
 	}
 	
+	static String opstellingsKeuring() {
+		System.out.println("Deze attractie moet een keuring hebben. Wilt u de attractie laten controleren (K).");
+		String maken = scanner.nextLine().toUpperCase();
+		return maken;
+	}
+	
 }

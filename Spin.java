@@ -2,6 +2,7 @@ package KermisApp;
 
 public class Spin extends RisicoVolleAttracties implements GokAttractie{
 	private int gereserveerdBedrag =0;
+
 	
 	////   CONSTRUCTOR   \\\\
 	Spin(String naam, int prijs) {
@@ -27,6 +28,7 @@ public class Spin extends RisicoVolleAttracties implements GokAttractie{
 
 	@Override
 	boolean opstellingskeuring() {
+		
 		this.opstellingskeuring = true;
 		return opstellingskeuring;
 	}
@@ -34,8 +36,21 @@ public class Spin extends RisicoVolleAttracties implements GokAttractie{
 	@Override
 	
 	public void onderhoudsbeurtNodig() {
-		if(this.getKaartjes() % 5 == 0) {
+		System.out.println(this.opstellingskeuring);
+		if(this.getKaartjes() % 5 == 0 && opstellingskeuring ==true && keuringGehad == false) {
 			onderhoudsbeurtNodig = true;
+		}else if(this.opstellingskeuring == false) {
+			while(this.opstellingskeuring ==false) {
+				String keus = Prompter.opstellingsKeuring();
+				if(keus.equals("K")) {
+					opstellingskeuring();
+				}if(!keus.equals("K")) {
+					System.out.println("Doe toch maar wel...");
+					continue;
+				}
+				return;
+			}
+			
 		}else {
 			onderhoudsbeurtNodig = false;
 		}
@@ -46,12 +61,16 @@ public class Spin extends RisicoVolleAttracties implements GokAttractie{
 		gereserveerdBedrag += (this.getPrijs()*0.3);
 //		System.out.println("kassa is "+ (this.getPrijs() - (this.getPrijs()*0.3))); // check of berekening klopt
 		kassa += (this.getPrijs() - (this.getPrijs()*0.3));
+		System.out.println(kassa);
 		return kassa;
 	}
 	
-	////	GETTER BELASTING GERESERVEERD		\\\\
+	///		GETTER & SETTER BELASTING GERESERVEERD		\\\\
 	public int getGereserveerdBedrag() {
 		return gereserveerdBedrag;
+	}
+	public void setGereserveerdBedrag(int g) {
+		gereserveerdBedrag = g;
 	}
 	
 }
