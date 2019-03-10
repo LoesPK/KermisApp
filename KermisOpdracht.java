@@ -1,4 +1,4 @@
-package weekOpdrachtKermis;
+package KermisApp;
 import java.util.ArrayList;
 
 public class KermisOpdracht {

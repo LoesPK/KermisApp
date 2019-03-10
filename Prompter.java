@@ -1,4 +1,4 @@
-package weekOpdrachtKermis;
+package KermisApp;
 
 import java.util.Scanner;
 
@@ -69,6 +69,12 @@ public class Prompter {
 		}else {
 			System.out.println("Levensgevaarlijk om de monteur niet langs te laten komen. Je mag deze attractie niet meer gebruiken");
 		}
+		return maken;
+	}
+	
+	static String opstellingsKeuring() {
+		System.out.println("Deze attractie moet een keuring hebben. Wilt u de attractie laten controleren (K).");
+		String maken = scanner.nextLine().toUpperCase();
 		return maken;
 	}
 	

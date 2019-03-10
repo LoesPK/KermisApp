@@ -1,4 +1,4 @@
-package weekOpdrachtKermis;
+package KermisApp;
 
 public class Hamburgerkraam extends Eetkraampje{
 
